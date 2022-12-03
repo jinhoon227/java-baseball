@@ -1,9 +1,12 @@
 package baseball.view;
 
+import baseball.domain.BallResult;
+
 public class OutputView {
 
     private static final String MESSAGE_START_GAME = "숫자 야구 게임을 시작합니다.";
     private static final String MESSAGE_INPUT_NUMBER = "숫자를 입력해주세요 : ";
+    private static final String MESSAGE_CORRECT_ANSWER = "3개의 숫자를 모두 맞히셨습니다! 게임 종료";
 
     public void printStartGame() {
         System.out.println(MESSAGE_START_GAME);
@@ -15,6 +18,13 @@ public class OutputView {
 
     public void printExceptionMessage(IllegalArgumentException exceptionMessage) {
         exceptionMessage.printStackTrace();
+    }
+
+    public void printResult(BallResult ballResult) {
+        System.out.println(ResultMap.of(ballResult));
+        if(ballResult.isAllStrike()){
+            System.out.println(MESSAGE_CORRECT_ANSWER);
+        }
     }
 
 }

@@ -8,6 +8,10 @@ public class BaseballGame {
         this.ball = ball;
     }
 
+    public BallResult judgeBall(Ball userBall) {
+        return BallResult.countBallAndStrike(ball, userBall);
+    }
+
     public boolean retryGame(RetryCommand retryCommand) {
         return false;
     }

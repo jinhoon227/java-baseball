@@ -7,6 +7,7 @@ import baseball.execption.NumberInvalidException;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Ball {
@@ -61,5 +62,30 @@ public class Ball {
         if (ball.size() != 3) {
             throw new BallLengthException();
         }
+    }
+
+    public int countSameNumber(Ball compareBall) {
+        int count = 0;
+        for (int index = 0; index < ball.size(); index++) {
+            if (ball.get(index) == compareBall.numberByIndex(index)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int countContainNumber(Ball compareBall) {
+        int count = 0;
+        for (int index = 0; index < ball.size(); index++) {
+            if (!(ball.get(index) == compareBall.numberByIndex(index))
+                    && ball.contains(compareBall.numberByIndex(index))) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private int numberByIndex(int index) {
+        return ball.get(index);
     }
 }

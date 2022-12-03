@@ -1,9 +1,6 @@
 package baseball.controller;
 
-import baseball.domain.Ball;
-import baseball.domain.BallMaker;
-import baseball.domain.BallRandomNumberGenerator;
-import baseball.domain.BaseballGame;
+import baseball.domain.*;
 import baseball.view.InputView;
 import baseball.view.OutputView;
 
@@ -23,13 +20,17 @@ public class BaseballController {
     }
 
     private void playGame() {
-        do{
+        do {
             playBaseballGame();
-        }while (true);
+        } while (true);
     }
 
     private void playBaseballGame() {
-        askBall();
+        BallResult ballResult;
+        do {
+            ballResult = baseballGame.judgeBall(askBall());
+            outputView.printResult(ballResult);
+        } while (!ballResult.isAllStrike());
     }
 
     private Ball askBall() {
