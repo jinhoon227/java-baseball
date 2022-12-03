@@ -14,7 +14,7 @@ public class BallMaker {
     }
 
     public Ball makeBall() {
-        return new Ball(Stream.generate(ballNumberGenerator::generate)
+        return Ball.of(Stream.generate(ballNumberGenerator::generate)
                 .distinct()
                 .limit(BASEBALL_MAX).
                 collect(Collectors.toList()));

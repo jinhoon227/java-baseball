@@ -8,4 +8,8 @@ public class BaseballGame {
         this.ball = ball;
     }
 
+    public boolean retryGame(RetryCommand retryCommand) {
+        return false;
+    }
+
 }

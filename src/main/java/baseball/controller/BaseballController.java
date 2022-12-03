@@ -14,7 +14,27 @@ public class BaseballController {
     private BaseballGame baseballGame;
 
     public void runGame() {
-        startGame();
+        try {
+            startGame();
+            playGame();
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception);
+        }
+    }
+
+    private void playGame() {
+        do{
+            playBaseballGame();
+        }while (true);
+    }
+
+    private void playBaseballGame() {
+        askBall();
+    }
+
+    private Ball askBall() {
+        outputView.printPleaseInputNumber();
+        return inputView.readBall();
     }
 
     private void startGame() {
