@@ -11,18 +11,20 @@ public class BaseballController {
     private BaseballGame baseballGame;
 
     public void runGame() {
-        try {
-            startGame();
-            playGame();
-        } catch (IllegalArgumentException exception) {
-            outputView.printExceptionMessage(exception);
-        }
+        startGame();
     }
 
-    private void playGame() {
+    private void startGame() {
+        outputView.printStartGame();
         do {
+            baseballGame = new BaseballGame(createBall());
             playBaseballGame();
-        } while (true);
+        } while (baseballGame.retryGame(askRetry()));
+    }
+
+    private RetryCommand askRetry() {
+        outputView.printAskRetry();
+        return inputView.readGameCommand();
     }
 
     private void playBaseballGame() {
@@ -36,11 +38,6 @@ public class BaseballController {
     private Ball askBall() {
         outputView.printPleaseInputNumber();
         return inputView.readBall();
-    }
-
-    private void startGame() {
-        outputView.printStartGame();
-        baseballGame = new BaseballGame(createBall());
     }
 
     private Ball createBall() {

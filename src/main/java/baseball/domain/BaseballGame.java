@@ -13,7 +13,6 @@ public class BaseballGame {
     }
 
     public boolean retryGame(RetryCommand retryCommand) {
-        return false;
+        return retryCommand.getValue();
     }
-
 }
